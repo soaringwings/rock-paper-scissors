@@ -67,14 +67,15 @@ function playGame() {
     }
 
     for (let i = 0; i < 5; i++) {
-        if (playRound(getHumanChoice(), getComputerChoice) === "win") {
+        let outcome = playRound(getHumanChoice(), getComputerChoice)
+        if (outcome === "win") {
             humanScore += 1;
-        } else if (playRound(getHumanChoice(), getComputerChoice) === "lose") {
+        } else if (outcome === "lose") {
             computerScore += 1;
         }
     }
-    console.print(`${humanScore} is the human score`);
-    console.print(`${computerScore} is the computer's score`)
+    console.log(`${humanScore} is the human score`);
+    console.log(`${computerScore} is the computer's score`)
 }
 
 playGame();
