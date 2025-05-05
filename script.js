@@ -30,7 +30,7 @@ function playGame() {
     const rock = document.querySelector(".rock");
     const paper = document.querySelector(".paper");
     const scissors = document.querySelector(".scissors");
-    const div = document.querySelector(".div");
+    const div = document.querySelector("div");
 
     rock.addEventListener("click", () => {
         const humanChoice = "rock"
@@ -50,33 +50,42 @@ function playGame() {
     function playRound(humanChoice, computerChoice) {
         // humanChoice = humanChoice.toLowerCase();
         // computerChoice = getComputerChoice();
-        let outcome;
         roundCount += 1
-        if (roundCount < 5) {
+        let outcome;
+        const newLine = document.createElement("p");
+        if (roundCount <= 5) {
             if (humanChoice === computerChoice) {
                 outcome = "draw";
+                newLine.textContent = "You have drawed!"
+                div.appendChild(newLine);
             } else if (humanChoice === "rock") {
                 if (computerChoice === "paper") {
-                    console.log(`You lose ${computerChoice} beats ${humanChoice}`);
+                    newLine.textContent = `You lose ${computerChoice} beats ${humanChoice}`;
+                    div.appendChild(newLine);
                     outcome = "lose";
                 } else {
-                    console.log(`You win ${humanChoice} beats ${computerChoice}`)
+                    newLine.textContent = `You win ${humanChoice} beats ${computerChoice}`;
+                    div.appendChild(newLine);
                     outcome = "win";
                 }
             } else if (humanChoice === "paper") {
                 if (computerChoice === "scissors") {
-                    console.log(`You lose ${computerChoice} beats ${humanChoice}`);
+                    newLine.textContent = `You lose ${computerChoice} beats ${humanChoice}`;
+                    div.appendChild(newLine);
                     outcome = "lose";
                 } else {
-                    console.log(`You win ${humanChoice} beats ${computerChoice}`)
+                    newLine.textContent = `You win ${humanChoice} beats ${computerChoice}`;
+                    div.appendChild(newLine);
                     outcome = "win";
                 }
             } else if (humanChoice === "scissors") {
                 if (computerChoice === "rock") {
-                    console.log(`You lose ${computerChoice} beats ${humanChoice}`);
+                    newLine.textContent = `You lose ${computerChoice} beats ${humanChoice}`;
+                    div.appendChild(newLine);
                     outcome = "lose";
                 } else {
-                    console.log(`You win ${humanChoice} beats ${computerChoice}`)
+                    newLine.textContent = `You win ${humanChoice} beats ${computerChoice}`
+                    div.appendChild(newLine);
                     outcome = "win";
                 }
             }
@@ -85,10 +94,14 @@ function playGame() {
             } else if (outcome === "lose") {
                 computerScore += 1;
             }
-        } else if (roundCount === 5)
-            
-        div.textContent = `${humanScore} is the human score`;
-        div.textContent = `${computerScore} is the computer's score`;
+        }
+        
+        if (roundCount === 5) {
+            const result = document.createElement("p");
+            result.style.whiteSpace = "pre-wrap";
+            result.textContent = `${humanScore} is the human score\n${computerScore} is the computer's score`;
+            div.appendChild(result);
+        }
     }
 
     // for (let i = 0; i < 5; i++) {
